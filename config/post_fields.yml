@@ -1,0 +1,17 @@
+POST_FIELDS:
+ - 'id'
+ - 'title'
+ - 'score'
+ - 'num_comments'
+ - 'author'
+ - 'created_utc'
+ - 'url'
+ - 'spoiler'
+
+COMMENT_FIELDS:
+ - post.id
+ - id,
+ - str(author)
+ - body,
+ - score,
+ - created_utc 

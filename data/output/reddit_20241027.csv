@@ -1,0 +1,85 @@
+id,title,score_post,num_comments,author_post,created_utc_post,url,spoiler,post_id,comment_id,author_cmnt,body,score_cmnt,created_utc_cmnt,parent_id
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,lqprc0d,zhivix,"hi there, im currently need some help regarding my project, currently working on webscraping data at my workplace as a DA and am thinking into designing the data pipeline and possibly automating it as my project seeing im only doing webscraping and doing data cleaning for the past 2-3 months now, here is what i am currently doing manually:
+
+1. webscraping data from website using python scripts (beautifulsoup,requests,json) or power automate desktop into a csv file, and will scrape either daily or once a week   
+2. afterwards i webscrape from 4 different website using the same method   
+3. then the csv files created are merged into one master csv file per each website after certain conditions are met e.g. once every 2-4k rows of data are scraped, ill merge into the master file  
+4. the files will undergo data cleaning and transformation, and finally load into visualisation tools like power bi to make a report dashboard (we're mostly doing data cleaning and transforming, since the report dashboard hasnt been needing as of now, im just doing rough draft of the dashboard on my own)
+
+and ive been asking from chatgpt on how i can turn this into a data pipeline and this is the short answer:
+
+# Pipeline Architecture Diagram:
+
+1. **Extract (Web Scraping)**:
+   * Tools: Python (Scrapy, Selenium, Requests) or Cloud Functions
+   * Scheduler: Apache Airflow or Prefect
+   * Frequency: Daily/Weekly Scraping
+   * Storage: Cloud Storage (AWS S3, GCS, etc.)
+2. **Transform (Data Cleaning/Integration)**:
+   * Tools: Python (Pandas, PySpark), dbt for transformations
+   * Storage: PostgreSQL/MySQL/NoSQL (MongoDB, DynamoDB)
+   * Orchestration: Airflow/Prefect
+3. **Load (BI Tool Integration)**:
+   * Tools: Direct Database Connection (Power BI) or Cloud Data Warehouses (BigQuery/Redshift)
+   * Scheduled Data Refresh: Power BI API or direct connection
+4. **Monitoring and Alerts**:
+   * Tools: Airflow UI, CloudWatch, Logging Libraries, Email/Slack Alerts
+
+# Suggested Technologies:
+
+* **Orchestrators**: Apache Airflow, Prefect
+* **ETL Tools**: Scrapy, dbt, Pandas, PySpark
+* **Storage**: AWS S3, Google Cloud Storage, PostgreSQL/MySQL, MongoDB/DynamoDB (NoSQL)
+* **BI**: Power BI (connected to database/warehouse)
+* **Monitoring**: Airflow UI, CloudWatch/Stackdriver
+
+  
+im more of a beginner so from the list is this a good idea of a start?",1,2024-10-07 02:01:47,t3_1ftrmzu
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,lr37v8q,nakatayuji,"Hi all, data analyst that's pursuing data engineering as a long term career path. I'm working on a project where my current goals are to pull data from an API (Strava), transforming it with pandas, and then loading it into a local Postgres database. I'd like to eventually make this more robust by doing some of the following:
+
+Develop visualizations using the built data pipeline
+Running the pipeline/database on the cloud (still need to learn more about this)
+Implement Airflow to schedule the workflows
+
+Looking for some input on what I should prioritize if the goal is to both develop desirable skills and display competency - any insight is greatly appreciated :)",1,2024-10-09 13:36:21,t3_1ftrmzu
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,ls4olyt,AmbitiousCase4992,"Hey everyone! Looking for some advice. I’ve got a client who’s using SAP across their entire stack, and they want to replicate their SAP HANA/BW data to BigQuery so they can tap into GCP’s AI/ML tools like GenAI, Vertex AI, and Cortex. Problem is, their SAP license apparently doesn’t allow data replication outside of SAP, so tools like SNP Glue or Fivetran aren’t options.
+
+They’re leaning towards SAP Datasphere for this. For those who’ve worked with Datasphere, **do you know if this setup would allow them to model the replicated data once it’s in BigQuery**, or will they need to keep their entire analytics stack within SAP itself? Any insights are appreciated!",1,2024-10-16 00:49:44,t3_1ftrmzu
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,lt495vi,Royal-Treat-8381,"Hi ,
+
+I need help with assigning tasks to my juniors on Databricks , they are pretty much done with certifications and are looking for anything new to work on 
+
+Can anyone suggest me anything which I can  assign them and should be able to work on community account 
+
+Or is there any possibility of sandbox for databricks with monthly subscription",1,2024-10-22 03:19:47,t3_1ftrmzu
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,lqtqnux,_n80n8,"hi u/zhivix - (disclaimer I work for prefect) if you already have the python script written, to get started with prefect all you have to do is
+
+- \`pip install prefect\`  
+- \`from prefect import flow\` and then wrap your main function in a flow decorator
+
+from there, you can incrementally adopt orchestration features (retries, caching etc) as needed, instead of being forced to learn a bunch of things you might not care about up front
+
+For deployment/scheduling, I would recommend starting with \`your\_main\_flow.serve()\` (easiest way to start) and then checking out \`.deploy()\` if you need dynamic dispatch of infra (like ECS, k8s etc)",2,2024-10-07 19:34:07,t1_lqprc0d
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,ls4rl9g,AmbitiousCase4992,"Hey! this is alright. My first question would be **why do you want to build this project?** i.e is it just for automation's sake for your DA up skill or you'd like to dig deeper into pipeline building? Cause that's where you can add a bit of scope into these end to end projects (that requires both DE & DA skills) & better manage your expectations.
+
+My suggestion is to go FOSS wherever possible if you're just starting out, less friction to learn stuffs vs learn how to allocate cost-efficient resource. With that in mind, **on the BI layer maybe go with options like metabase, lightdash, streamlit** in order of complexity (or any other tool on your radar - the BI landscape is very vast, pick your poison)
+
+Also if you want to take on DE skills in this project, I'm not seeing the plan for underlying system of this stack. Typically you'd have 2 options one go all out self hosted on your pc, or two get a compute instance (aws EC2/ azure VM, google GCE) with the free credit from those vendors for a new account.
+
+Here's some good posts that helped me going in the beginning. Not 100% matching your desired stack but there's some overlapping with dbt, airflow and metabase. Also great introduction into docker containers. Hope this helps!
+
+[https://www.startdataengineering.com/post/data-engineering-project-to-impress-hiring-managers/](https://www.startdataengineering.com/post/data-engineering-project-to-impress-hiring-managers/)  
+[https://www.startdataengineering.com/post/data-engineering-project-for-beginners-batch-edition/](https://www.startdataengineering.com/post/data-engineering-project-for-beginners-batch-edition/)",1,2024-10-16 01:08:33,t1_lqprc0d
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,ls4s25w,AmbitiousCase4992,hi! I'd say your situation is similar to u/zhivix in that you're starting out building an end to end project. Check out my reply on his thread. Hope this helps!,2,2024-10-16 01:11:35,t1_lr37v8q
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,ls4x8ss,zhivix,">Hey! this is alright. My first question would be why do you want to build this project? i.e is it just for automation's sake for your DA up skill or you'd like to dig deeper into pipeline building? Cause that's where you can add a bit of scope into these end to end projects (that requires both DE & DA skills) & better manage your expectations.
+
+hi there, ill be most likely building the pipeline as my side project, as of now the automation its not really needed at my workplace, its just that the work progress at my workplace moves very slowly, so im just stuck at doing scraping, cleaning and storing data manually as of now, and since i had alot of time in my hands, so might as well do some upskilling on my side
+
+>My suggestion is to go FOSS wherever possible if you're just starting out, less friction to learn stuffs vs learn how to allocate cost-efficient resource. With that in mind, on the BI layer maybe go with options like metabase, lightdash, streamlit in order of complexity (or any other tool on your radar - the BI landscape is very vast, pick your poison)
+
+whats FOSS i may ask? and yes ive been learning how to use streamlit for a while so thats probably my go through BI as of now
+
+>Also if you want to take on DE skills in this project, I'm not seeing the plan for underlying system of this stack. Typically you'd have 2 options one go all out self hosted on your pc, or two get a compute instance (aws EC2/ azure VM, google GCE) with the free credit from those vendors for a new account.
+
+my current problem ive been noticing is that theres so many tools to choose from and ive got headache from all of the choices lol, so ill be checking out that blogpost youll put on your comment.",1,2024-10-16 01:44:35,t1_ls4rl9g
+1ftrmzu,Monthly General Discussion - Oct 2024,5,9,AutoModerator,2024-10-01 16:00:25,https://www.reddit.com/r/dataengineering/comments/1ftrmzu/monthly_general_discussion_oct_2024/,False,1ftrmzu,ls5iuqb,AmbitiousCase4992,FOSS means free open source. Cheers!,1,2024-10-16 04:19:07,t1_ls4x8ss
